@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 from typing import Literal, NewType
 
-from pydantic import AwareDatetime, BaseModel, Field
+from pydantic import AwareDatetime, BaseModel, Field, NaiveDatetime
 
 ###### Events ######
 
@@ -107,3 +107,14 @@ class LogStatistics(BaseModel):
     priority: int
     status: STATUS_LOG
     time_in_queue: timedelta
+
+
+###### RPS ######
+
+
+class RPSStatistics(BaseModel):
+    created: NaiveDatetime
+    entrypoint: str
+    slab: str
+    status: str
+    count: int

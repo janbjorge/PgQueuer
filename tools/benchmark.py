@@ -105,8 +105,8 @@ Enqueue:                {args.enqueue}
 Enqueue Batch Size:     {args.enqueue_batch_size}
 """)
 
-    await (await querier(args.driver, dsn())).clear_log()
-    await (await querier(args.driver, dsn())).clear_queue()
+    # await (await querier(args.driver, dsn())).clear_log()
+    # await (await querier(args.driver, dsn())).clear_queue()
 
     alive = asyncio.Event()
     qms = list[QueueManager]()
