@@ -267,8 +267,14 @@ def cliparser() -> argparse.Namespace:
         type=lambda s: timedelta(seconds=float(s)),
     )
     wm_parser.add_argument(
+        "--workers",
+        help="Number of workers",
+        type=int,
+        default=1,
+    )
+    wm_parser.add_argument(
         "qm_factory",
-        help=("Path to the QueueManager factory function, e.g., " '"myapp.create_queue_manager"'),
+        help="Path to the QueueManager factory function, e.g. 'myapp.create_queue_manager'",
     )
     return parser.parse_args()
 
@@ -353,4 +359,5 @@ async def main() -> None:  # noqa: C901
                 dequeue_timeout=parsed.dequeue_timeout,
                 batch_size=parsed.batch_size,
                 retry_timer=parsed.retry_timer,
+                workers=parsed.workers,
             )
